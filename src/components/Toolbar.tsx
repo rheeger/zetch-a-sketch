@@ -7,6 +7,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { BrushPreview } from "./BrushPreview";
+import WalletConnectionModal from "./Web3Modal";
 
 export const Toolbar: React.FC<any> = ({
   currentWidth,
@@ -28,6 +29,20 @@ export const Toolbar: React.FC<any> = ({
 }) => {
   return (
     <aside>
+      <div>
+        <WalletConnectionModal />
+        <a
+          className="btn btn--main btn--block"
+          download="image.png"
+          onClick={handleDownload}
+          href={dateUrl}
+        >
+          Mint Sketch
+        </a>
+        <button className="btn btn--block" onClick={handleClear}>
+          Reset
+        </button>
+      </div>
       <div>
         <BrushPreview currentWidth={currentWidth} currentColor={currentColor} />
         <div className="tool-section tool-section--lrg">
@@ -149,25 +164,7 @@ export const Toolbar: React.FC<any> = ({
           </div>
         )}
       </div>
-      <div>
-        <a
-          className="btn btn--main btn--block"
-          download="image.png"
-        >
-          Wallet
-        </a>
-        <a
-          className="btn btn--main btn--block"
-          download="image.png"
-          onClick={handleDownload}
-          href={dateUrl}
-        >
-          Mint Art
-        </a>
-        <button className="btn btn--block" onClick={handleClear}>
-          Detroy Art
-        </button>
-      </div>
+      
     </aside>
   );
 };
