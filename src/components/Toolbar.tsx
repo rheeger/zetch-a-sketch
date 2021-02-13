@@ -5,7 +5,7 @@ import {
   faPaintBrush,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
+import React, { useState } from "react";
 import { BrushPreview } from "./BrushPreview";
 import WalletConnectionModal from "./Web3Modal";
 
@@ -30,15 +30,7 @@ export const Toolbar: React.FC<any> = ({
   return (
     <aside>
       <div>
-        <WalletConnectionModal />
-        <a
-          className="btn btn--main btn--block"
-          download="image.png"
-          onClick={handleDownload}
-          href={dateUrl}
-        >
-          Mint Sketch
-        </a>
+        <WalletConnectionModal handleDownload={handleDownload} />
         <button className="btn btn--block" onClick={handleClear}>
           Reset
         </button>
@@ -67,9 +59,8 @@ export const Toolbar: React.FC<any> = ({
         <div className="tool-grid tool-section tool-section--lrg">
           <div>
             <button
-              className={`btn btn--tool ${
-                isRegularMode && !isEraser ? "btn--active" : ""
-              }`}
+              className={`btn btn--tool ${isRegularMode && !isEraser ? "btn--active" : ""
+                }`}
               onClick={handleRegularMode}
             >
               <FontAwesomeIcon icon={faPaintBrush} />
@@ -77,9 +68,8 @@ export const Toolbar: React.FC<any> = ({
           </div>
           <div>
             <button
-              className={`btn btn--tool ${
-                !isRegularMode ? "btn--dream-active" : ""
-              }`}
+              className={`btn btn--tool ${!isRegularMode ? "btn--dream-active" : ""
+                }`}
               onClick={handleSpecialMode}
             >
               <FontAwesomeIcon icon={faMagic} />
@@ -87,9 +77,8 @@ export const Toolbar: React.FC<any> = ({
           </div>
           <div>
             <button
-              className={`btn btn--tool ${
-                isEraser ? "btn--eraser-active" : ""
-              }`}
+              className={`btn btn--tool ${isEraser ? "btn--eraser-active" : ""
+                }`}
               onClick={handleEraserMode}
             >
               <FontAwesomeIcon icon={faEraser} />
@@ -106,9 +95,8 @@ export const Toolbar: React.FC<any> = ({
             />{" "}
             <label
               htmlFor="tool-autowidth"
-              className={`btn btn--tool ${
-                isAutoWidth ? "btn--width-active" : ""
-              }`}
+              className={`btn btn--tool ${isAutoWidth ? "btn--width-active" : ""
+                }`}
             >
               <FontAwesomeIcon icon={faArrowsAltH} />
             </label>
@@ -164,7 +152,6 @@ export const Toolbar: React.FC<any> = ({
           </div>
         )}
       </div>
-      
     </aside>
   );
 };

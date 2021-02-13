@@ -21,8 +21,7 @@ body {
   color: var(--color-text);
   font-size: var(--font-size-base);
   line-height: var(--line-height-base);
-  font-family: "Lato", Avenir, Adobe Heiti Std, Segoe UI, Trebuchet MS,
-    sans‑serif;
+  font-family: monospace
 }
 
 html,
@@ -80,22 +79,10 @@ header {
   align-items: center;
   text-align: center;
   padding: 4rem;
-  border: 2rem solid;
-  border-image-slice: 1;
-  border-image-source: repeating-conic-gradient(
-    hsl(0, 100%, 50%),
-    hsl(36, 100%, 50%),
-    hsl(108, 100%, 50%),
-    hsl(211, 100%, 50%),
-    hsl(247, 100%, 50%),
-    hsl(277, 100%, 50%),
-    hsl(320, 100%, 50%),
-    hsl(0, 100%, 50%)
-  );
 }
 
 header.hidden {
-  animation: fadeOut 1s ease-in-out forwards;
+  animation: fadeOut .25s ease-in-out forwards;
   pointer-events: none;
 }
 
@@ -131,16 +118,10 @@ header a:active {
 
 h1 {
   font-weight: 400;
-  font-family: "Finger Paint";
   font-size: 8rem;
   letter-spacing: -0.3rem;
   margin: 0 0 3rem;
-  background: linear-gradient(
-    90deg,
-    hsl(0, 100%, 50%),
-    hsl(211, 100%, 50%) 50%,
-    hsl(108, 100%, 40%)
-  );
+  background: black;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -396,7 +377,7 @@ input[type="checkbox"] {
 }
 
 .btn--active {
-  background-color: hsl(211, 100%, 70%);
+  background-color: hsl(113, 90%, 46%);
 }
 
 .btn--dream-active {
