@@ -13,6 +13,7 @@ import {
 
 import ipfs from "../hooks/useIpfs";
 import { constructMediaData, sha256FromBuffer, generateMetadata, constructBidShares, Zora } from '@zoralabs/zdk';
+import { ethers } from "ethers"
 
 const SLayout = styled.div`
   position: relative;
@@ -152,15 +153,14 @@ class WalletConnectionModal extends React.Component<any, any> {
 
   public zoraMint = async (buffer: Buffer) => {
     const { web3, chainId, address } = this.state;
-    const nonce = "1"
 
     const metadataJSON = generateMetadata('zora-20210101', {
       description: `An artwork made by: ${address}`,
       mimeType: 'image/png',
-      name: `ZaS #: ${nonce}`,
+      name: `ZaS ${address.slice(0, 2) + '...' + address.slice(-4)} #1`,
       version: 'zora-20210101',
     })
-
+    console.log(metadataJSON)
     const metadataHash = sha256FromBuffer(Buffer.from(metadataJSON))
     const contentHash = sha256FromBuffer(buffer)
     const ipfsMetadataHash = await ipfs.add(Buffer.from(metadataJSON))
@@ -172,15 +172,14 @@ class WalletConnectionModal extends React.Component<any, any> {
       contentHash,
       metadataHash
     )
-
-    console.log(mediaData)
     const bidShares = constructBidShares(
       48, // creator share
       51, // owner share
       1 // prevOwner share
     )
     console.log(web3)
-    const zora = new Zora(web3.eth.currentProvider, chainId)
+    const signer = (new ethers.providers.Web3Provider(web3.currentProvider)).getSigner()
+    const zora = new Zora(signer, chainId)
     const tx = await zora.mint(mediaData, bidShares)
     await tx.wait(8) // 8 confirmations to finalize
   }

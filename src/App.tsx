@@ -19,7 +19,6 @@ const App = () => {
     const buffer = Buffer.from(data, 'base64');
 
     return buffer
-
   }, [canvas]);
 
   const toolbarProps = { ...state, ...api, dateUrl, handleDownload };

@@ -16,6 +16,7 @@
     "@zoralabs/zdk": "^1.0.3",
     "axios": "^0.21.1",
     "blockies-ts": "^1.0.0",
+    "ethers": "^5.0.31",
     "ipfs-api": "^26.1.2",
     "normalize.css": "^8.0.1",
     "react": "^17.0.1",
