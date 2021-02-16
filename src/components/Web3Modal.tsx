@@ -31,6 +31,7 @@ interface IAppState {
   showModal: boolean;
   pendingRequest: boolean;
   result: any | null;
+  title: string;
 }
 
 const INITIAL_STATE: IAppState = {
@@ -43,7 +44,8 @@ const INITIAL_STATE: IAppState = {
   networkId: 1,
   showModal: false,
   pendingRequest: false,
-  result: null
+  result: null,
+  title: "untitled"
 };
 
 function initWeb3(provider: any) {
@@ -152,12 +154,12 @@ class WalletConnectionModal extends React.Component<any, any> {
   };
 
   public zoraMint = async (buffer: Buffer) => {
-    const { web3, chainId, address } = this.state;
+    const { web3, chainId, address, title } = this.state;
 
     const metadataJSON = generateMetadata('zora-20210101', {
-      description: `An artwork made by: ${address}`,
+      description: `created with zetch-a-sketch`,
       mimeType: 'image/png',
-      name: `ZaS ${address.slice(0, 2) + '...' + address.slice(-4)} #1`,
+      name: `zetch: "${title}"`,
       version: 'zora-20210101',
     })
     console.log(metadataJSON)
@@ -189,6 +191,7 @@ class WalletConnectionModal extends React.Component<any, any> {
       address,
       connected,
       chainId,
+      title
     } = this.state;
     return (
       <SLayout>
@@ -198,6 +201,7 @@ class WalletConnectionModal extends React.Component<any, any> {
           chainId={chainId}
           killSession={this.resetApp}
         /> : <ConnectButton text="Connect Wallet" onClick={this.onConnect} />}
+        <input style={{ fontWeight: "600", textAlign: "center", margin: ".75rem 0", padding: ".75rem", borderRadius: "32px", width: "100%" }} placeholder={`"Untitled"`} onChange={(e) => e.target.value ? this.setState({ title: e.target.value }) : this.setState({ title: "Untitled" })} name="title"></input>
         <a
           className="btn btn--main btn--block"
           download="image.png"
@@ -209,7 +213,7 @@ class WalletConnectionModal extends React.Component<any, any> {
         >
           Mint
         </a>
-      </SLayout>
+      </SLayout >
     );
   };
 }

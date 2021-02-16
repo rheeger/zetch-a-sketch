@@ -13,9 +13,6 @@ export const Intro: React.FC<Props> = ({ init, isReady }) => {
         <button onClick={init} className="blob-btn">
           <span className="">Start Sketching</span>
         </button>
-        <p>
-          Built for Zora by <strong>Robbie Heeger</strong>      |      Magic-Painter by <strong>Adrian Bece</strong>
-        </p>
       </div>
     </header >
   );

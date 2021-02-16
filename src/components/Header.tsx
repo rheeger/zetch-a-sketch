@@ -8,6 +8,7 @@ import { transitions } from "../styles";
 
 const SHeader = styled.div`
   margin-top: -1px;
+  margin-left: -12px;
   margin-bottom: 1px;
   height: 73px;
   display: flex;
@@ -39,7 +40,7 @@ const SAddress = styled.p<IHeaderStyle>`
 
 const SDisconnect = styled.div<IHeaderStyle>`
   transition: ${transitions.button};
-  font-size: 12px;
+  font-size: 10px;
   font-family: monospace;
   position: absolute;
   right: 0;
