@@ -9,9 +9,9 @@ jobs:
     steps:
       - name: Get project data
         env:
-          GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
-          ORGANIZATION: rheeger
-          PROJECT_NUMBER: 1
+          GITHUB_TOKEN: ${{ secrets.ENDAOMENT_ENGINEERING_PROJECT }}
+          ORGANIZATION: endaoment
+          PROJECT_NUMBER: 16
         run: |
           gh api graphql -f query='
             query($org: String!, $number: Int!) {
@@ -36,13 +36,13 @@ jobs:
                   }
                 }
               }
-            }' -f user=$ORGANIZATION -F number=$PROJECT_NUMBER > project_data.json
+            }' -f org=$ORGANIZATION -F number=$PROJECT_NUMBER > project_data.json
 
-          echo 'PROJECT_ID='$(jq '.data.user.projectV2.id' project_data.json) >> $GITHUB_ENV
+          echo 'PROJECT_ID='$(jq '.data.organization.projectV2.id' project_data.json) >> $GITHUB_ENV
                     
       - name: Add issue to project
         env:
-          GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.ENDAOMENT_ENGINEERING_PROJECT }}
           ISSUE_ID: ${{ github.event.issue.node_id }}
         run: |
           item_id="$( gh api graphql -f query='
