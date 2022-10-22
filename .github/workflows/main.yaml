@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: Get project data
         env:
-          GITHUB_TOKEN: ${{ secrets.ENDAOMENT_ENGINEERING_PROJECT }}
+          GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
           ORGANIZATION: endaoment
           PROJECT_NUMBER: 16
         run: |
@@ -42,7 +42,7 @@ jobs:
                     
       - name: Add issue to project
         env:
-          GITHUB_TOKEN: ${{ secrets.ENDAOMENT_ENGINEERING_PROJECT }}
+          GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
           ISSUE_ID: ${{ github.event.issue.node_id }}
         run: |
           item_id="$( gh api graphql -f query='
